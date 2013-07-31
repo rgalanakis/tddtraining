@@ -33,14 +33,13 @@ Test cases and tests
 ===
 
 * Subclass `unittest.TestCase`.
-* All `test*` methods are tests.
+* All `test*` methods are tests:
 
-
-    class CalculatorTests(unittest.TestCase):
-        def testOnePlusOne(self):  # Is a test
-            ...
-        def someHelper(self):  # Is not a test
-            ...
+        class CalculatorTests(unittest.TestCase):
+            def testOnePlusOne(self):  # Is a test
+                ...
+            def someHelper(self):  # Is not a test
+                ...
 
 !
 
@@ -62,9 +61,8 @@ Assertions
 * There are many specific assert methods.
 * Use the most specific one possible to generate better failure messages.
 
-
-    self.assertIn(a, [1, 2]) # Good!
-    self.assertTrue(a in [1, 2]) # Bad!
+        self.assertIn(a, [1, 2]) # Good!
+        self.assertTrue(a in [1, 2]) # Bad!
 
 !
 
