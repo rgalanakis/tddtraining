@@ -28,5 +28,5 @@ All code compatible with Python 2.6+.
 Authors
 =======
 
-Rob Galanakis: <rob.galanakis@gmail.com>
-Alex Couper: <info@alexcouper.com>
+* Rob Galanakis: <rob.galanakis@gmail.com>
+* Alex Couper: <info@alexcouper.com>
