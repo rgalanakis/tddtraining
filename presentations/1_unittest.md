@@ -1,102 +1,104 @@
-Apps 
+I. Unit Testing Intro
 ===
-Lots of people have been asking stuff...
+
+Let's talk about what unit testing is at a technical level,
+so we're all up to speed with the same vocabulary.
 
 !
 
-My story
+What's a "unit"?
 ===
-* Wasted +1yr on first app
-* First few failed
-* Since then churn out simple ones
-* Been focused a few months maybe?
-* 7 or 8 apps now
+
+A “unit” is smallest portion of code, such as a method or function.
 
 !
 
-Sales
+What's a "test"?
 ===
-* Money's kinda useful
-* Average $70/day
-* Soon to be $100 with voda app
-* Thats 36k...
-* I want a boat
+
+A “test” asserts a condition, such as:
+`1 + 1 == 2`
 
 !
 
-Coding
+`import unittest`
 ===
-* Obj-C is nice
-* Think of it like a VERY simple layer of OO on top of C
-* Much simpler than C++
-* Like JS with C syntax
+
+Python's `unittest` module is based on the **xUnit** framework,
+which specifies a certain architecture we don’t need to cover right now.
 
 !
 
-Time and Motivation
+Test cases and tests
 ===
-* I spend a few hours a week on it
-* Motivated by family/house
-* Dont be scared to give it a go
+
+* Subclass `unittest.TestCase`.
+* All `test*` methods are tests.
+
+
+    class CalculatorTests(unittest.TestCase):
+        def testOnePlusOne(self):  # Is a test
+            ...
+        def someHelper(self):  # Is not a test
+            ...
 
 !
 
-Support
+Test results
 ===
-* I have my email in most apps
-* Get maybe one a day?
-* Everyone is friendly
-* I gave one refund
+
+* Tests can succeed:
+  * `self.assertEqual(2, 1 + 1)`
+* Tests can fail:
+  * `assertEqual(3, 1 + 1)`
+* Tests can error:
+  * `assertEqual(2, 1 + ‘’)`
 
 !
 
-Fail forwards
+Assertions
 ===
-* Most apps fail
-* < $5 / week = fail
-* So: Make lots of small apps
-* Build on what works eg usage
-* Remember rovio made 51 apps before angry birds.
+
+* There are many specific assert methods.
+* Use the most specific one possible to generate better failure messages.
+
+
+    self.assertIn(a, [1, 2]) # Good!
+    self.assertTrue(a in [1, 2]) # Bad!
 
 !
 
-Ideas
+Setting up and tearing down
 ===
-* Start with crummy ideas. Thats better than nothing.
-* If it's 'obvious' to you, then its probably useful to someone.
-* Execution > ideas anyway.
+
+* A `setUp` method can be run before each test.
+* A `tearDown` method can be run after each test.
+* There’s `setUpClass`, `tearDownClass`, and `addCleanup`, if you’re interested.
 
 !
 
-Marketing
+Package setup for testing
 ===
-* Tried free for a week - fail (800 -> 0)
-* I have websites for my apps - nothing
-* Tried $2 - nothing, except usage apps
-* Now I just plonk them on at $1 or $2 and leave it
-* Haven't tried adwords
+
+* Have a test folder with an `__init__.py` file so it’s importable.
+* Test files should be `test_<modulename>.py`
 
 !
 
-Nuts n bolts
+Running tests
 ===
-* Reviews take 2 weeks
-* Apple takes 30%
-* GST is 10%
-* Marginal tax will take 37% of what remains
-* Put it in the wife's name!
-* Ads in apps make nothing
+
+* Run tests with `unittest.main()`,
+  or test discovery through nose.
+* Best handled through your IDE!
+  * *Demo with PyCharm*
+  * *Demo with Sublime*
 
 !
 
-Ideas
----
-* Pair up, make two apps, one in each name to make revenue split simple
-* Android - never touched. Get in the ground floor on tablets?
-* Scratch your own itch - make a very simple app
+Now, you’re turn!
+===
 
-!
+Let's make sure everyone can write and run very simple unit tests.
 
-Whats stopping you?
----
-Any questions?
+Next, we'll demo TDD, so we need to make sure everyone can follow along.

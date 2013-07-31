@@ -12,7 +12,8 @@ PRESMD = os.path.join(THISDIR, 'presentation.md')
 
 def main():
     p = optparse.OptionParser()
-    p.add_option('-p', '--presentation', default='defaultpresentation.md')
+    p.add_option('-p', '--presentation',
+                 default=os.path.join(THISDIR, 'defaultpresentation.md'))
     p.add_option('--port', type='int', default=34567)
     p.add_option('-u', '--update', action='store_true',
                  help='If provided, just copy the presentation so it can be '
