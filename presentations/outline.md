@@ -25,14 +25,14 @@ and making sure everyone is setup to do TDD.
     6. There are many specific assert methods. Use the most specific one possible (ie, assertIn(a, [1, 2]) rather than assertTrue(a in [1, 2]))
     7. A ‘setUp’ method can be run before each test.
     8. A ‘tearDown’ method can be run after each test.
-    9. There’s setUpClass, tearDownClass, and addCleanup, if you’re interested.
-1. Package setup for testing
-    1. Have a test folder with an __init__.py file so it’s importable.
+    9. There’s setUpClass, tearDownClass (and setUpModule tearDownModule), and addCleanup, if you’re interested.
+4. Package setup for testing
+    1. Have a test folder with an ‘__init__.py’ file so it’s importable.
     2. Test files should be ‘test_<modulename>.py’
-1. Run tests with unittest.main(), or test discovery through nose. Best handled through your IDE!
+5. Run tests with unittest.main(), or test discovery through nose. Best handled through your IDE!
     1. Demo with PyCharm
     2. Demo with Sublime
-1. Now, you’re turn!
+6. Now, you’re turn!
     1. Make sure everyone can write and run very simple unit tests.
 
 Part II: TDD Demo
