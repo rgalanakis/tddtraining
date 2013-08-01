@@ -84,21 +84,4 @@ We’ll go through some terminology and uses for mocking to get everyone on the 
 Part V: Practical TDD
 ===
 
-Applying TDD for a new project, with clear requirements, is straightforward.
-In this part, we’ll use TDD on a less academic example.
-Students will need to make a tic-tac-toe game that reports completed games
-to a database.
-Instructors will walk through what’s expected in the implementation.
-
-1. Requirements
-    1. When a game starts, the gmtime is recorded in the DB
-    2. After each game, the gmtime and result (player A win, player B win, tie, abort) should be reported to the database.
-    3. Results are persisted.
-1. Instructions/suggestions
-    1. Wrap the original tictactoe library into a version that does the necessary calls (do not modify the original library to add DB support)
-    2. Provide a domain-specific interface for the DB calls (record_game_started, record_game_result) that has the DB dependency injected.
-    3. Inject this interface into the game wrapper, and test with a mock (ensure that things are called in a proper order with proper args)
-    4. You may also want to inject the tictactoe game itself as a stub
-    5. Test db interface separately with in-memory sqlite DB, not as part of game.
-    6. Provide psuedo-code or diagrammatic implementation for students to base off of.
-1. Implementation. Instructors walk around and help students.
+See `code.mocking` for details and materials.
