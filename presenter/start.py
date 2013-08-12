@@ -1,4 +1,4 @@
-import optparse
+import argparse
 import os
 import shutil
 import SimpleHTTPServer
@@ -11,14 +11,16 @@ PRESMD = os.path.join(THISDIR, 'presentation.md')
 
 
 def main():
-    p = optparse.OptionParser()
-    p.add_option('-p', '--presentation',
-                 default=os.path.join(THISDIR, 'defaultpresentation.md'))
-    p.add_option('--port', type='int', default=34567)
-    p.add_option('-u', '--update', action='store_true',
-                 help='If provided, just copy the presentation so it can be '
-                      'reloaded by the browser.')
-    opts = p.parse_args()[0]
+    p = argparse.ArgumentParser()
+    p.add_argument(
+        'presentation',
+        default=os.path.join(THISDIR, 'defaultpresentation.md'))
+    p.add_argument('--port', type=int, default=34567)
+    p.add_argument(
+        '-u', '--update', action='store_true',
+        help='If provided, just copy the presentation so it can be '
+             'reloaded by the browser.')
+    opts = p.parse_args()
 
     presentation = os.path.abspath(opts.presentation)
     print 'Presenting', presentation

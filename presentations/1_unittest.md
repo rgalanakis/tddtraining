@@ -97,7 +97,7 @@ Running tests
 Now, you’re turn!
 ===
 
+Next we'll introduce the interesting concepts of Test Driven Development,
+so we need to make sure everyone can follow along.
+
 Let's make sure everyone can write and run very simple unit tests.
-
-Next, we'll demo TDD, so we need to make sure everyone can follow along.
-
