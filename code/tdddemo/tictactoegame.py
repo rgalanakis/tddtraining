@@ -5,9 +5,9 @@ WINX = 'winx'
 WINO = 'wino'
 DRAW = 'draw'
 
-X = 'x'
-O = 'o'
-E = ''
+X = 'X'
+O = 'O'
+E = ' '
 
 TOPLEFT = 0, 0
 LEFTEDGE = 1, 0
@@ -61,6 +61,10 @@ class Game(object):
             ]
         self._board = board
 
+    @property
+    def turnis(self):
+        return self._turnis
+
     def _possiblewins(self):
         for a, b, c in WINNING_MOVES:
             yield [self.takenby(a), self.takenby(b), self.takenby(c)]
@@ -85,12 +89,10 @@ class Game(object):
         if self.result() != INCOMPLETE:
             raise GameFinished()
 
-        self._checkrange(row)
-        self._checkrange(col)
+        if not self.is_empty((row, col)):
+            raise CellTaken()
         if char != self._turnis:
             raise MoveOutOfOrder()
-        if self._board[row][col] != E:
-            raise CellTaken()
         self._board[row][col] = char
         self._turnis = O if char is X else X
 
@@ -104,4 +106,14 @@ class Game(object):
         return self._board[spot[0]][spot[1]]
 
     def is_empty(self, spot):
+        self._checkrange(spot[0])
+        self._checkrange(spot[1])
         return self.takenby(spot) == E
+
+    def __str__(self):
+        string = ""
+        for index, row in enumerate(self._board):
+            string += " {0} | {1} | {2} ".format(*row)
+            if index in (0, 1):
+                string += "\n-----------\n"
+        return string
