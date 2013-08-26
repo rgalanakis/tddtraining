@@ -87,3 +87,23 @@ class TestTicTacToe(unittest.TestCase):
         self.g.takex(ttt.CENTER)
         self.assertFalse(self.g.is_empty(ttt.CENTER))
         self.assertTrue(self.g.is_empty(ttt.TOPLEFT))
+
+    def testOutOfBoundsIsEmptyRaises(self):
+        self.assertRaises(ttt.OutOfBoundsMove, self.g.is_empty, (-1, 0))
+
+    def testStringRenderEmpty(self):
+        self.assertEqual(str(self.g),
+            ("   |   |   \n"
+             "-----------\n"
+             "   |   |   \n"
+             "-----------\n"
+             "   |   |   "))
+
+    def testStringRenderDraw(self):
+        self._draw()
+        self.assertEqual(str(self.g),
+            (" X | X | O \n"
+             "-----------\n"
+             " O | O | X \n"
+             "-----------\n"
+             " X | O | X "))
