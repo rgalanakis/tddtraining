@@ -30,24 +30,24 @@ instructor_sources
 Contains all authoritative source code that may go into exercise folders,
 along with supporting resources.
 
-    - `mocking_resources`
+- `mocking_resources`
 
-      Contains the "guerilla" features to use during the mocking exercise,
-      an example mocking exercise implementation developed by instructors,
-      and any other supporting stuff.
-      Should not be given to students.
+  Contains the "guerilla" features to use during the mocking exercise,
+  an example mocking exercise implementation developed by instructors,
+  and any other supporting stuff.
+  Should not be given to students.
 
-    - `tddai_resources`
+- `tddai_resources`
 
-      Contains an example TicTacToe AI implementation developed by instructors.
-      Not to be given to students.
+  Contains an example TicTacToe AI implementation developed by instructors.
+  Not to be given to students.
 
-    - `tddai_source`
+- `tddai_source`
 
-      Contains the source code for the TDD exercise.
-      `tictactoegame.py` and `run.py` should be copied to `exercise_tdd`
-      to give students a working TicTacToe game
-      and a way to use it interactively.
+  Contains the source code for the TDD exercise.
+  `tictactoegame.py` and `run.py` should be copied to `exercise_tdd`
+  to give students a working TicTacToe game
+  and a way to use it interactively.
 
 exercise_mocking
 ---
