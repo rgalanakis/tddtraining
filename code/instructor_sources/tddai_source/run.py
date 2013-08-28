@@ -1,3 +1,9 @@
+"""Console UI for `tictactoegame.py`.
+
+Run this file to play an actual game with two players.
+Feel free to edit it if you want to play against an AI.
+"""
+
 import os
 
 import tictactoegame as ttt

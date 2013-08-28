@@ -1,4 +1,4 @@
-from . import tictactoegame as ttt
+from ..tddai_source import tictactoegame as ttt
 
 # --X
 # -O-

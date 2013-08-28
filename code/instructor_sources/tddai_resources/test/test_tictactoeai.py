@@ -1,7 +1,7 @@
 import unittest
 
-from .. import tictactoegame as tttg
-from ..tictactoegame import X, O, E
+from ...tddai_source import tictactoegame as tttg
+from ...tddai_source.tictactoegame import X, O, E
 from .. import tictactoeai as tttai
 
 

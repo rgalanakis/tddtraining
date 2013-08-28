@@ -1,3 +1,8 @@
+"""A Tic-Tac-Toe implementation to use during the mocking exercise.
+
+Students should not modify this file.
+"""
+
 import exceptions
 import inspect
 import random

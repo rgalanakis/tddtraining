@@ -1,3 +1,5 @@
+"""Working implementation of tictactoe to build an AI against."""
+
 import itertools
 
 INCOMPLETE = 'unfin'
