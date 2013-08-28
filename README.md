@@ -69,12 +69,22 @@ Instructions included in `ai_requirements.rst`.
 Presenting
 ===
 
-Being redone to use reveal.js. Will update when I have it working.
+Presenting is done through the most-excellent
+[reveal.js](https://github.com/hakimel/reveal.js/).
 
-All code compatible with Python 2.6+.
+To get set up:
+
+- Install [node.js](http://nodejs.org/)
+- Install [grunt](http://gruntjs.com/getting-started#installing-the-cli)
+- Navigate to `tddtraining/reveal.js/`
+- Run `npm install` to install all module dependencies.
+- Run `grunt serve` to serve the presentation and monitor files for changes.
+- Open http://localhost:8000/ to view your presentation.
 
 Authors
 ===
+
+All code compatible with Python 2.6+.
 
 * Rob Galanakis: <rob.galanakis@gmail.com>
 * Alex Couper: <info@alexcouper.com>
