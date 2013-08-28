@@ -204,32 +204,40 @@ TDD Intro
 Now that we've covered unit testing,
 we'll go into the TDD process.
 
->
-
-Normal Dev
-===
+V
 
 ![Design->Implement->Test](/images/design_impl_test.png)
 
->
+V
 
-Test Driven Dev
-===
+Normal development has testing come at the end.
+
+V
 
 ![Design->Test->Implement->Test](/images/tdd_linear.png)
 
->
+V
 
-Test Driven Dev
-===
+Test Driven Development has testing come before implementation.
+
+V
 
 ![Design->Test->Implement->Test Cycle](/images/tdd_cycle.png)
 
->
+V
+
+Actually, it is a short cycle that happens many times
+as you "implement" something.
+
+V
+
+![Design->Test->Implement->Test Cycle](/images/tdd_cycle_rgr.png)
+
+V
 
 Red->Green->Refactor->(Repeat) is the **fundamental** concept of TDD.
 
->
+V
 
 * Write a test.
 * Run the test and ensure it fails.
@@ -242,10 +250,12 @@ Red->Green->Refactor->(Repeat) is the **fundamental** concept of TDD.
 Refactoring
 ===
 
-*A disciplined technique for restructuring an existing body of code,*
-*altering its internal structure without changing its external behavior.*
+V
 
->
+> A disciplined technique for restructuring an existing body of code,
+> altering its internal structure without changing its external behavior.
+
+V
 
 Too easy?
 ===
