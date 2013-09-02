@@ -56,19 +56,19 @@ V
 
 V
 
+![Pair Programming](/images/pairprogramming.jpg)
+
 Note: Explain what pair programming is and why it is valuable.
 
 V
 
-Note: Show this via images
+![Navigator/Driver cycle](/images/pairprogramming_cycle.jpg)
 
-* **Driver** writes code.
-* **Navigator** guides and reviews.
-* Switch frequently.
+Note: Driver writes code, Navigator guides and reviews. Switch frequently.
 
 V
 
-Everything today should be done in pairs.
+### Exercises today should be done in pairs.
 
 >
 
