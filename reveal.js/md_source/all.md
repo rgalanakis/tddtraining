@@ -174,35 +174,28 @@ Let's make sure everyone can write and run very simple unit tests.
 
 >
 
-TDD Intro
-===
+# TDD Intro
 
-Now that we've covered unit testing,
+Note: Now that we've covered unit testing,
 we'll go into the TDD process.
 
 V
 
 ![Design->Implement->Test](/images/design_impl_test.png)
 
-V
-
-Normal development has testing come at the end.
+Note: Normal development has testing come at the end.
 
 V
 
 ![Design->Test->Implement->Test](/images/tdd_linear.png)
 
-V
-
-Test Driven Development has testing come before implementation.
+Note: Test Driven Development has testing come before implementation.
 
 V
 
 ![Design->Test->Implement->Test Cycle](/images/tdd_cycle.png)
 
-V
-
-Actually, it is a short cycle that happens many times
+Note: Actually, it is a short cycle that happens many times
 as you "implement" something.
 
 V
@@ -211,7 +204,7 @@ V
 
 V
 
-Red->Green->Refactor->(Repeat) is the **fundamental** concept of TDD.
+### Red->Green->Refactor->(Repeat) is the **fundamental** concept of TDD.
 
 V
 
@@ -223,24 +216,23 @@ V
 
 >
 
-Refactoring
-===
+# Refactoring
 
 V
 
 > A disciplined technique for restructuring an existing body of code,
 > altering its internal structure without changing its external behavior.
 
+Note: Martin Fowler
+
 V
 
-Too easy?
-===
+![discipline is important](/images/discipline.png)
 
-It requires a huge amount of discipline to do this.
-
+Note: H Jackson Brown Jr.
+Sounds too easy? It requires a huge amount of discipline to do this.
 But the more it's done, the easier it is, because of your skills *and*
 an improved codebase.
-
 We'll go into each step in detail during the demo.
 
 >
