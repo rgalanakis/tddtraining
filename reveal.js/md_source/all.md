@@ -1,15 +1,45 @@
-Test Driven Development in a Day
-===
+# Test Driven Development in a Day
 
 Presented by Alex Couper and Rob Galanakis
 
 >
 
-Agenda
-===
+# Why TDD?
 
-* Introductions
-* Pairing
+V
+
+## TDD is a **design**  process.
+## not a **testing** process.
+
+V
+
+## Regression tests are a **side product**.
+## not the goal.
+
+V
+
+> TDD doesn't drive good design.
+> TDD gives you immediate feedback about what is likely to be bad design.
+
+Note: Kent Beck
+
+>
+
+# Why today?
+
+Today's goal is to teach you the **skill** of TDD by
+explanation, demonstration, and **participation**.
+
+V
+
+# Be skeptical
+
+### The best way to justify TDD is by doing it.
+
+>
+
+# Agenda
+
 * Unit Testing introduction
 * TDD Explanation and Demo
 * You do TDD
@@ -22,149 +52,92 @@ Agenda
 
 >
 
-Introductions
-===
+# Pair Programming
 
->
+V
 
-Why TDD
-===
+Note: Explain what pair programming is and why it is valuable.
 
-* TDD is a **design** process, not a **testing** process.
-* Regression tests are a **side product** of the process, not the goal.
-* Using TDD results in fundamentally better code than not using it.
-* You will feel the same way by the end of the day.
+V
 
->
-
-Why today?
-===
-
-Today's goal is to teach you the **skill** of TDD by
-explanation, demonstration, and **participation**.
-
-**Be skeptical**: the best way to justify TDD is by doing it.
-If you're still not convinced, talk to me.
-
->
-
-Legacy Code
-===
-
-* Today is focused on new code,
-  but it is vital for legacy code as well.
-* More on this when Michael Feathers visits CCP in late October.
-
->
-
-Pair Programming
-===
-
-...is a tenet of eXtreme Programming and valuable when learning TDD.
-
-* All exercises will be done in pairs.
-* You should not pair with the same person twice.
-* Leads to huge gains on production work!
-
->
-
-Pair Programming
-===
+Note: Show this via images
 
 * **Driver** writes code.
 * **Navigator** guides and reviews.
 * Switch frequently.
 
+V
+
+Everything today should be done in pairs.
+
 >
 
-Let's get started!
-===
+# What is a Unit Test?
 
->
-
-I. Unit Testing Intro
-===
-
-Let's talk about what unit testing is at a technical level,
+Note: Let's talk about what unit testing is at a technical level,
 so we're all up to speed with the same vocabulary.
 
->
+V
 
-What's a "unit"?
-===
+## A "unit" is smallest portion of code, such as a method or function.
 
-A “unit” is smallest portion of code, such as a method or function.
+V
 
->
+## A "test" asserts a condition, such as:
 
-What's a "test"?
-===
+### `1 + 1 == 2`
 
-A “test” asserts a condition, such as:
-
-`1 + 1 == 2`
-
->
+V
 
 `import unittest`
-===
 
-Python's `unittest` module is based on the **xUnit** framework,
-which specifies a certain architecture we don’t need to cover right now.
+Note: Python's `unittest` module is based on the **xUnit** framework
 
->
+V
 
-Test cases and tests
-===
+## Test cases and tests
 
-* Subclass `unittest.TestCase`.
-* All `test*` methods are tests:
+    class CalculatorTests(unittest.TestCase):
+        def testOnePlusOne(self):  # Is a test
+            ...
+        def someHelper(self):  # Is not a test
+            ...
 
-        class CalculatorTests(unittest.TestCase):
-            def testOnePlusOne(self):  # Is a test
-                ...
-            def someHelper(self):  # Is not a test
-                ...
+Note: Subclass `unittest.TestCase`. All `test*` methods are tests:
 
->
+V
 
-Test results
-===
+### Tests can succeed:
 
-* Tests can succeed:
-  * `self.assertEqual(2, 1 + 1)`
-* Tests can fail:
-  * `assertEqual(3, 1 + 1)`
-* Tests can error:
-  * `assertEqual(2, 1 + ‘’)`
+  `self.assertEqual(2, 1 + 1)`
 
->
+### Tests can fail:
 
-Assertions
-===
+  `assertEqual(3, 1 + 1)`
 
-* There are many specific assert methods.
-* Use the most specific one possible to generate better failure messages.
+### Tests can error:
 
-        self.assertIn(a, [1, 2]) # Good!
-        self.assertTrue(a in [1, 2]) # Bad!
+  `assertEqual(2, 1 + '')`
 
->
+V
 
-Setting up and tearing down
-===
+## Assertions
 
-* A `setUp` method can be run before each test.
-* A `tearDown` method can be run after each test.
-* There’s `setUpClass`, `tearDownClass`, and `addCleanup`, if you’re interested.
+    self.assertTrue(1 + 1 == 3)
+    # AssertionError: False is not True
 
->
+    self.assertEqual(1 + 1, 3)
+    # AssertionError: 2 != 3
 
-Package setup for testing
-===
+V
 
-* Have a test folder with an `__init__.py` file so it’s importable.
-* Test files should be `test_<modulename>.py`
+## Setting up and tearing down
+
+![setUp->runTest->tearDown](/images/setupteardown.png)
+
+V
+
+## Package setup for testing
 
     eggs/
         __init__.py
@@ -174,24 +147,27 @@ Package setup for testing
             test_eggs.py
             test_spam.py
 
+Note: Have a test folder with an `__init__.py` file so it's importable.
+Test files should be `test_<modulename>.py`
+
+V
+
+## Running tests
+
+    if __name__ == '__main__':
+        unittest.main()
+
+    $ python -c "import nose; nose.run()"
+
+    But best handled through your IDE.
+
+Note: Demo with commandline, PyCharm, and Sublime with Kristinn's plugin.
+
 >
 
-Running tests
-===
+# Now, your turn!
 
-* Run tests with `unittest.main()`,
-  or test discovery through nose.
-* Best handled through your IDE!
-  * *Demo with commandline with nose*
-  * *Demo with PyCharm*
-  * *Demo with Sublime plugin*
-
->
-
-Now, your turn!
-===
-
-Next we'll introduce the interesting concepts of Test Driven Development,
+Note: Next we'll introduce the interesting concepts of Test Driven Development,
 so we need to make sure everyone can follow along.
 
 Let's make sure everyone can write and run very simple unit tests.
@@ -376,12 +352,12 @@ Let's review a couple solutions.
 OLD
 ===
 
-We’ll go through some terminology and uses for mocking to get everyone on the same page.
+We'll go through some terminology and uses for mocking to get everyone on the same page.
 
 1. A mock is a stand-in for a piece of code with external dependencies.
 2. External dependencies should be factored out so they are passed into code that needs them (dependency injection)
 3. Or external dependencies can be patched (monkeypatching). Prefer dependency injection, use whatever makes the code and tests simpler.
-4. Wrap hard dependencies (DB, RESTful API) in a Pythonic wrapper. “Business” code shouldn’t access resources directly.
+4. Wrap hard dependencies (DB, RESTful API) in a Pythonic wrapper. "Business" code shouldn't access resources directly.
 5. Use a stub to return a known value (very simple).
 6. Use a fake as a lightweight API implementation (simple when done well, reusable).
 7. Use a mock to ensure something is called in a certain way (most confusing).
