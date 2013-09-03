@@ -237,97 +237,113 @@ We'll go into each step in detail during the demo.
 
 >
 
-Demo time
-===
+# Demo time
 
-We're going to build a Tic-Tac-Toe game using TDD.
+![tictactoe](/images/tictactoe.png)
 
-This is an exercise in **Mob Programming**,
-so please participate!
+V
 
->
+![mob programming](/images/mobprogramming.png)
 
-Step 0 (Prep)
-===
+V
+
+## Step 0 (Prep)
 
 Figure out what you are making!
 
->
+V
 
-Step 1 (Prep)
-===
+## Step 1 (Prep)
 
 Create file structure.
 
->
+V
 
-Step 2
-===
+## Step 2
 
 Figure out the first behavior we want to test.
 
 The first test is the hardest to write!
 
->
+V
 
-Step 3
-===
+## Step 3
 
 Create the test.
 
->
+V
 
-Step 4
-===
+## Step 4
 
 Run the test. It must fail.
 
->
+V
 
-Step 5
-===
+## Step 5
 
 Write the code.
 
 The first implementation is the easiest to write!
 
->
+V
 
-Step 6
-===
+## Step 6
 
 Run the tests.
 
->
+V
 
-Step 7
-===
+## Step 7
 
 Refactor yet? No.
 
 >
+![red](/images/red.jpg)
+V
+![green](/images/green.jpg)
+V
+![refactor](/images/refactor.jpg)
+V
+![red](/images/red.jpg)
+V
+![green](/images/green.jpg)
+V
+![refactor](/images/refactor.jpg)
+V
+![red](/images/red.jpg)
+V
+![green](/images/green.jpg)
+V
+![refactor](/images/refactor.jpg)
+V
+![red](/images/red.jpg)
+V
+![green](/images/green.jpg)
+V
+![refactor](/images/refactor.jpg)
+V
+![red](/images/red.jpg)
+V
+![green](/images/green.jpg)
+V
+![refactor](/images/refactor.jpg)
+V
+![red](/images/red.jpg)
+V
+![green](/images/green.jpg)
+V
+![refactor](/images/refactor.jpg)
+>
 
-TODO: Red
+# The End
+
+Know when you're done.
+
+### Your code should do only what it needs to do.
 
 >
 
-TODO: Green
-
->
-
-TODO: Refactor
-
->
-
-The End
-===
-
-Know when you're done. Your code should do only what it needs to do.
-
->
-
-Your turn!
-===
+# Your turn!
 
 Take the Tic-Tac-Toe game provided and write a "perfect" AI using TDD.
 
@@ -340,6 +356,169 @@ You can use any AI strategy you want but it must be developed with TDD.
 Let's review a couple solutions.
 
 >
+
+# Mocking and Dependency Injection
+
+>
+
+![dependency injection](/images/depinj.jpg)
+
+V
+
+Where are the dependencies?
+
+    def IsCorporation(ownerID):
+        ...
+        elif boot.role == 'server':
+            standsvc = sm.GetService('standing2')
+            iscorp = standsvc.IsKnownToBeAPlayerCorp(ownerID)
+            return iscorp
+        ...
+
+V
+
+If we pass them both in?
+
+    def IsCorporation(ownerID, bootrole, standsvc):
+        ...
+        elif bootrole == 'server':
+            iscorp = standsvc.IsKnownToBeAPlayerCorp(ownerID)
+            return iscorp
+        ...
+
+V
+
+`boot` is constant, though.
+
+    import boot
+    ...
+    def IsCorporation(ownerID, standsvc):
+        ...
+        elif boot.role == 'server':
+            iscorp = standsvc.IsKnownToBeAPlayerCorp(ownerID)
+            return iscorp
+        ...
+
+V
+
+So the caller looks like:
+
+    iscorp = IsCorporation(1001, sm.GetService('standing2'))
+
+V
+
+Or more likely:
+
+    def SomeFunc(ownerID, standsvc, corpsvc):
+        ...
+        iscorp = IsCorporation(ownerID, sm.GetService('standing2'))
+        ...
+
+V
+
+## Oy!
+
+### Wouldn't we have a lot of dependencies and huge function signatures?
+
+V
+
+![hidden dependencies](/images/depends1.png)
+
+Note: This is what we think our code looks like.
+
+V
+
+![repressed dependencies](/images/depends2.png)
+
+Note: This is what our code looks like.
+
+V
+
+![surfaced dependencies](/images/depends3.png)
+
+Note: This is what our code would look like if dependencies were surfaced.
+
+V
+
+## Testable systems will never develop this architecture.
+
+V
+
+![rearchitect dependencies](/images/dependsgood.png)
+
+Note: We should build our systems so they are encapsulated and actually
+**are** like this!
+
+V
+
+### Dependency injection allows the testing of code that relies on another system.
+
+### To test you use "Mocks".
+
+>
+
+# Mocking
+
+V
+
+![MJ impersonator](/images/impersonator.jpg)
+
+V
+
+It's helpful to know the different "types" of mocks to better understand
+what mocking is.
+
+V
+
+## Stubs
+
+Simply return a value.
+
+V
+_
+
+    def testIsCorpIfIsPlayerCorp():
+        getIsPlayerCorp = lambda: True
+        isalliance = IsCorporation(47585434, getIsPlayerCorp)
+        assert not isalliance
+
+V
+
+## Fakes
+
+Mimic the behavior of an expensive (out-of-memory or complex) resource.
+
+V
+
+Not sure yet...
+
+V
+
+## Mocks
+
+Check for side effects/something being called.
+
+V
+
+How can we be sure we're reaching the "play corp" logic?
+
+    import mock
+
+    def testIsCorpIfIsPlayerCorp():
+        getIsPlayerCorp = mock.Mock(return_value=True)
+        ownerid = 47585434
+        isalliance = IsCorporation(ownerid, getIsPlayerCorp)
+        assert not isalliance
+        assert getIsPlayerCorp.called
+        # or
+        getIsPlayerCorp.assert_called_once_with(ownerid)
+
+
+
+
+
+
+V
 
 OLD
 ===
