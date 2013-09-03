@@ -500,7 +500,7 @@ Check for side effects/something being called.
 
 V
 
-How can we be sure we're reaching the "play corp" logic?
+How can we be sure we're reaching the "player corp" logic?
 
     import mock
 
