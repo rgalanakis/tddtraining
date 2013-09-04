@@ -453,7 +453,7 @@ V
 
 ### Dependency injection allows the testing of code that relies on another system.
 
-### To test you use "Mocks".
+### To test you use "Mocks" ("test doubles").
 
 >
 
@@ -468,31 +468,60 @@ V
 It's helpful to know the different "types" of mocks to better understand
 what mocking is.
 
-V
+- Stubs
+- Fakes
+- Mocks
+
+>
 
 ## Stubs
 
 Simply return a value.
-
-V
-_
 
     def testIsCorpIfIsPlayerCorp():
         getIsPlayerCorp = lambda: True
         isalliance = IsCorporation(47585434, getIsPlayerCorp)
         assert not isalliance
 
-V
+>
 
 ## Fakes
 
-Mimic the behavior of an expensive (out-of-memory or complex) resource.
+Mimic the behavior of an expensive resource.
 
 V
 
-Not sure yet...
+In-memory databases and filesystems are examples of **fakes**.
+
+    pyodbc.connect("DRIVER={SQL Server};SERVER=sqldev1is;...")
+
+vs.
+
+    sqlite3.connect(":memory:")
 
 V
+
+Real services should provide fakes so systems depending
+on the service can be tested.
+
+    class RemoteAPI(object):
+        URL = 'http://someservice/'
+        def create_job(self, name):
+            self.PUT('/createjob/' + name)
+        def get_job(name):
+            self.GET('/getjob/' + name
+
+vs.
+
+    class FakeAPI(object):
+        def create_job(self, name):
+            if name in jobs:
+                raise CustomError('%s already exists.' % name)
+            self._jobs[name] = Job(name)
+        def get_job(name):
+            return self._jobs[name]
+
+>
 
 ## Mocks
 
@@ -500,7 +529,19 @@ Check for side effects/something being called.
 
 V
 
-How can we be sure we're reaching the "player corp" logic?
+How can we be sure we're reaching the logic we want to test and
+we're not passing the test due to some other code?
+
+    def IsCorporation(ownerID, standsvc):
+        ...
+        elif boot.role == 'server':
+            iscorp = standsvc.IsKnownToBeAPlayerCorp(ownerID)
+            return iscorp
+        ...
+
+V
+
+## Use a mock!*
 
     import mock
 
@@ -509,26 +550,74 @@ How can we be sure we're reaching the "player corp" logic?
         ownerid = 47585434
         isalliance = IsCorporation(ownerid, getIsPlayerCorp)
         assert not isalliance
-        assert getIsPlayerCorp.called
-        # or
         getIsPlayerCorp.assert_called_once_with(ownerid)
 
-
-
-
-
+*or write better code.
 
 V
 
-OLD
-===
+## Also use to test side effects.
 
-We'll go through some terminology and uses for mocking to get everyone on the same page.
+    def testReturnsFalseForIOError():
+        with mock.patch('shutil.copyfile') as m:
+            m.side_effect = IOError()
+            self.assertFalse(do_awesome_stuff())
+        self.assertTrue(m.called)
 
-1. A mock is a stand-in for a piece of code with external dependencies.
-2. External dependencies should be factored out so they are passed into code that needs them (dependency injection)
-3. Or external dependencies can be patched (monkeypatching). Prefer dependency injection, use whatever makes the code and tests simpler.
-4. Wrap hard dependencies (DB, RESTful API) in a Pythonic wrapper. "Business" code shouldn't access resources directly.
-5. Use a stub to return a known value (very simple).
-6. Use a fake as a lightweight API implementation (simple when done well, reusable).
-7. Use a mock to ensure something is called in a certain way (most confusing).
+>
+
+# Monkey Patching
+
+V
+
+### Is basically this:
+
+    def testFailsUnderUnknownVersion():
+        oldversion = sys.version
+        sys.version = 'blah blah...'
+        try:
+            self.assertRaises(RuntimeError, spam.eggs)
+        finally:
+            sys.version = oldversion
+
+V
+
+### Usually use with mocking:
+
+    def testWritesToStdOut():
+        stdout = spam.sys.stdout
+        spam.sys.stdout = mock.Mock()
+        try:
+            foo.bar()
+            spam.sys.stdout.assert_called_once_with('hello!')
+        finally:
+            spam.sys.stdout = stdout
+
+V
+
+### mock.patch
+
+As a context manager:
+
+    def testWritesToStdOut():
+        with mock.patch('sys.stdout') a m:
+            foo.bar()
+        m.assert_called_once_with('hello!')
+
+Or a decorator:
+
+    @mock.patch('sys.stdout')
+    def testWritesToStdOut(m):
+        foo.bar()
+        m.assert_called_once_with('hello!')
+
+>
+
+# A Practical Example
+
+V
+
+### Most real-world examples combine different types of mocking, patching, dependency injection, etc.
+
+V
+
