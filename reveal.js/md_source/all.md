@@ -40,6 +40,7 @@ V
 
 # Agenda
 
+* Pair Programming
 * Unit Testing introduction
 * TDD Explanation and Demo
 * You do TDD
@@ -79,7 +80,7 @@ so we're all up to speed with the same vocabulary.
 
 V
 
-## A "unit" is smallest portion of code, such as a method or function.
+## A "unit" is independent piece of code, such as a method or function.
 
 V
 
@@ -103,7 +104,8 @@ V
         def someHelper(self):  # Is not a test
             ...
 
-Note: Subclass `unittest.TestCase`. All `test*` methods are tests:
+Note: Test cases subclass `unittest.TestCase` and hold a number of tests.
+All `test*` prefixed methods are tests.
 
 V
 
@@ -128,6 +130,9 @@ V
 
     self.assertEqual(1 + 1, 3)
     # AssertionError: 2 != 3
+
+    self.assertDictContainsSubset({'1': 1}, {'2': 2})
+    # AssertionError: Missing: '1'
 
 V
 
@@ -202,17 +207,11 @@ V
 
 ![Design->Test->Implement->Test Cycle](/images/tdd_cycle_rgr.png)
 
-V
-
-### Red->Green->Refactor->(Repeat) is the **fundamental** concept of TDD.
-
-V
-
-* Write a test.
-* Run the test and ensure it fails.
-* Do the **simplest** implementation to get the test to pass.
-* Run the test and ensure it passes.
-* **Refactor** to clean up tests or code.
+Note: Write a test.
+Run the test and ensure it fails.
+Do the **simplest** implementation to get the test to pass.
+Run the test and ensure it passes.
+**Refactor** to clean up tests or code.
 
 >
 
@@ -220,7 +219,7 @@ V
 
 V
 
-> A disciplined technique for restructuring an existing body of code,
+> A **disciplined** technique for restructuring an existing body of code,
 > altering its internal structure without changing its external behavior.
 
 Note: Martin Fowler
@@ -621,3 +620,6 @@ V
 
 V
 
+    def getBannedUsers():
+        users = dbserver.query('SELECT * FROM users WHERE banned=1')
+        return list(users)
