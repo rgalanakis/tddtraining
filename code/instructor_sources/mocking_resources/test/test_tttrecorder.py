@@ -64,7 +64,3 @@ class TestRecorder(unittest.TestCase):
         self.assertEqual(len(items), 1)
         self.assertEqual(items[0][0], uid)
         self.assertEqual(items[0][1], 100)
-
-        self.assertDictContainsSubset({'1': 1}, {'2': 2})
-
-

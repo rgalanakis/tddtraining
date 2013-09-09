@@ -362,6 +362,9 @@ Let's review a couple solutions.
 
 ![dependency injection](/images/depinj.jpg)
 
+Note: In Python, DI and mocking are not complicated things and are just
+fancy names for stuff you'd probably already do.
+
 V
 
 Where are the dependencies?
@@ -403,15 +406,6 @@ V
 So the caller looks like:
 
     iscorp = IsCorporation(1001, sm.GetService('standing2'))
-
-V
-
-Or more likely:
-
-    def SomeFunc(ownerID, standsvc, corpsvc):
-        ...
-        iscorp = IsCorporation(ownerID, sm.GetService('standing2'))
-        ...
 
 V
 
@@ -464,8 +458,8 @@ V
 
 V
 
-It's helpful to know the different "types" of mocks to better understand
-what mocking is.
+It's helpful to know the different "types" of mocks (test doubles)
+to better understand what mocking is.
 
 - Stubs
 - Fakes
@@ -610,16 +604,12 @@ Or a decorator:
         foo.bar()
         m.assert_called_once_with('hello!')
 
+    @mock.patch('sys.stdout', mock.Mock())
+    def testWritesToStdOut():
+        foo.bar()
+
 >
 
-# A Practical Example
+# Final Project
 
-V
-
-### Most real-world examples combine different types of mocking, patching, dependency injection, etc.
-
-V
-
-    def getBannedUsers():
-        users = dbserver.query('SELECT * FROM users WHERE banned=1')
-        return list(users)
+### Recorder for Tic Tac Toe simulator

@@ -19,11 +19,11 @@ class TestAI(unittest.TestCase):
     4. Play an empty side.
     """
 
-    def assertMove(self, player, ideal, board):
+    def assertMove(self, player, ideal, board, func='assertEqual'):
         g = tttg.Game(board)
         ai = tttai.AI(player)
         move = ai.choose_move(g)
-        self.assertEqual(move, ideal)
+        getattr(self, func)(move, ideal)
 
     def testPlacesToWinX(self):
         self.assertMove(tttg.X, tttg.BOTTOMLEFT, [
@@ -46,14 +46,20 @@ class TestAI(unittest.TestCase):
             [X, E, E]
         ])
 
-    # def testFork(self):
-    #     g = tttg.Game([
-    #         [X, O, E],
-    #         [O, E, E],
-    #         [X, E, E]
-    #     ])
-    #     ai = tttai.AI(X)
-    #     self.assertEqual(ai.choose_move(g), tttg.BOTTOMRIGHT)
+    def testFork(self):
+        self.assertMove(X, tttg.BOTTOMRIGHT, [
+            [X, O, E],
+            [O, E, E],
+            [X, E, E]
+        ])
+
+    def testBlockAFork(self):
+        edges = [tttg.TOPEDGE, tttg.RIGHTEDGE, tttg.BOTTOMEDGE, tttg.LEFTEDGE]
+        self.assertMove(O, edges, [
+            [E, E, X],
+            [E, O, E],
+            [X, E, E]
+        ], 'assertIn')
 
     def testCenterIsPlayedAsFirstMove(self):
         self.assertMove(X, tttg.CENTER, None)
@@ -89,3 +95,25 @@ class TestAI(unittest.TestCase):
                 [X, O, X],
                 [O, X, O]
             ])
+
+
+class TestAIImpl(unittest.TestCase):
+
+    def testFindsFork(self):
+        self.assertEqual(tttg.BOTTOMRIGHT, tttai.find_fork(X, tttg.Game([
+            [X, O, E],
+            [O, E, E],
+            [X, E, E]
+        ]))[0])
+
+    def testFindsNoFork(self):
+        self.assertEqual(None, tttai.find_fork(X, tttg.Game([
+            [X, O, E],
+            [E, E, E],
+            [E, E, E]
+        ]))[0])
+        self.assertEqual(None, tttai.find_fork(X, tttg.Game([
+            [X, E, E],
+            [O, O, E],
+            [X, E, E]
+        ]))[0])

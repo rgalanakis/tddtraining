@@ -21,7 +21,7 @@ TOPRIGHT = 0, 2
 RIGHTEDGE = 1, 2
 BOTTOMRIGHT = 2, 2
 
-WINNING_MOVES = [
+THREE_IN_A_ROWS = [
     # row
     [TOPLEFT, TOPEDGE, TOPRIGHT],
     [LEFTEDGE, CENTER, RIGHTEDGE],
@@ -68,7 +68,7 @@ class Game(object):
         return self._turnis
 
     def _possiblewins(self):
-        for a, b, c in WINNING_MOVES:
+        for a, b, c in THREE_IN_A_ROWS:
             yield [self.takenby(a), self.takenby(b), self.takenby(c)]
 
     def result(self):
