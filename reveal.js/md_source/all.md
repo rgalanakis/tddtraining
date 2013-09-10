@@ -6,15 +6,27 @@ Presented by Alex Couper and Rob Galanakis
 
 # Why TDD?
 
+Note: Why test at all?
+We want tests so that we can have:
+ - Confidence that the code does what you expect it to.
+ - A scafolding within which refactoring, bug fixing and new features can be
+   added safely.
+Given that we want our code to be tested, we need it to be testable!
+
 V
 
 ## TDD is a **design**  process.
 ## not a **testing** process.
 
+Note: Turns out that code that is easily testable is also better (more
+maintainable, less complex, more decoupled)! Why not write the tests first and
+have them drive the design of the code?
+
 V
 
 ## Regression tests are a **side product**.
 ## not the goal.
+
 
 V
 
@@ -22,6 +34,7 @@ V
 > TDD gives you immediate feedback about what is likely to be bad design.
 
 Note: Kent Beck
+eg. Test is slow to run; Non-deterministic; Hard to write.
 
 >
 
@@ -30,11 +43,17 @@ Note: Kent Beck
 Today's goal is to teach you the **skill** of TDD by
 explanation, demonstration, and **participation**.
 
+Note: Doing TDD requires a broad range of skills which we'll go through today
+and you'll all be putting it into practice for yourselves.
+
 V
 
 # Be skeptical
 
 ### The best way to justify TDD is by doing it.
+
+Note: It will sound and feel strange at first, because part of you will want
+to "just get on and code". But bear with it, and you might just enjoy it :)
 
 >
 
