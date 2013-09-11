@@ -519,9 +519,9 @@ on the service can be tested.
     class RemoteAPI(object):
         URL = 'http://someservice/'
         def create_job(self, name):
-            self.PUT('/createjob/' + name)
+            self.PUT('/job/' + name)
         def get_job(name):
-            self.GET('/getjob/' + name
+            self.GET('/job/' + name
 
 vs.
 
