@@ -367,7 +367,7 @@ Know when you're done.
 
 Take the Tic-Tac-Toe game provided and write a "perfect" AI using TDD.
 
-See `tictactoe/ai_requirements.rst` for your AI's logic.
+See `ai_requirements.rst` for your AI's logic.
 
 You can use any AI strategy you want but it must be developed with TDD.
 
@@ -632,6 +632,22 @@ Or a decorator:
 
 >
 
-# Final Project
+# Demo time
 
-### Recorder for Tic Tac Toe simulator
+![Magic 8 Ball](/images/magic8ball.png)
+
+V
+
+![mob programming](/images/mobprogramming.png)
+
+>
+
+# Your Turn!
+
+Build a recorder for a Chess simulator.
+
+See `chess_recorder_requirements.rst`
+
+V
+
+![mocking chess](/images/mocking_chess.png)
