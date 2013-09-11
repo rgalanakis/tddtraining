@@ -539,13 +539,14 @@ V
     import mock
 
     def testIsCorpIfIsPlayerCorp():
-        getIsPlayerCorp = mock.Mock(return_value=True)
+        standsvc = mock.Mock()
+        standsvc.IsKnownToBeAPlayerCorp.return_value = True
         ownerid = 47585434
-        isalliance = IsCorporation(ownerid, getIsPlayerCorp)
+        isalliance = IsCorporation(ownerid, standsvc)
         assert not isalliance
-        getIsPlayerCorp.assert_called_once_with(ownerid)
+        standsvc.IsKnownToBeAPlayerCorp.assert_called_once_with(ownerid)
 
-*or write better code.
+*or write more testable code.
 
 V
 
