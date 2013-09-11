@@ -1,6 +1,12 @@
-  # Ask the player for a name.
-  # Ask the player his/her question, addressing them by name.
-  # Print one of the following answers:
+Provide a function that simulates asking
+a Magic 8 Ball a question.
+
+  # Ask the player for a name:
+    "What is your name?"
+  # Ask the player his/her question,
+    addressing them by name:
+    "What is your question, <name>?"
+  # Print "My answer is: " and one of the following answers:
 
         'It is certain',
         'It is decidedly so',
@@ -22,4 +28,3 @@
         'My sources say no',
         'Outlook not so good',
         'Very doubtful',
-

@@ -9,11 +9,15 @@ and make it save game results.
 Requirements
 ============
 
-    # When a game starts, the gmtime is written.
+    # When a game starts, the time.time is written.
     # After each game, the gmtime and result 
       (white win, black win, draw, abort, error)
       should be written.
-    # Results are persisted.
+    # Results are persisted in JSON format.
+    # The path to the file will be provided by the caller
+      and should not be part of this exercise
+      (except when doing an end-to-end demonstration).
+
 
 Suggestions
 ===========
