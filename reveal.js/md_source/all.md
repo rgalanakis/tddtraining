@@ -183,9 +183,11 @@ V
 
     $ python -c "import nose; nose.run()"
 
+    $ nosetests.exe
+
     But best handled through your IDE.
 
-Note: Demo with commandline, PyCharm, and Sublime with Kristinn's plugin.
+Note: Demo with commandline and PyCharm
 
 >
 
