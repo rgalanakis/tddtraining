@@ -7,7 +7,7 @@ import os
 import sqlite3
 import time
 
-from ...exercise_mocking.simtictactoe import simulate_game
+from ...exercise_mocking.simchess import simulate_game
 
 _DBPATH = os.path.splitext(__file__)[0] + '.db'
 
