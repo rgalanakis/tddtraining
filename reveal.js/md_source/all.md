@@ -6,27 +6,15 @@ Presented by Alex Couper and Rob Galanakis
 
 # Why TDD?
 
-Note: Why test at all?
-We want tests so that we can have:
- - Confidence that the code does what you expect it to.
- - A scafolding within which refactoring, bug fixing and new features can be
-   added safely.
-Given that we want our code to be tested, we need it to be testable!
-
 V
 
 ## TDD is a **design**  process.
 ## not a **testing** process.
 
-Note: Turns out that code that is easily testable is also better (more
-maintainable, less complex, more decoupled)! Why not write the tests first and
-have them drive the design of the code?
-
 V
 
 ## Regression tests are a **side product**.
 ## not the goal.
-
 
 V
 
@@ -34,7 +22,6 @@ V
 > TDD gives you immediate feedback about what is likely to be bad design.
 
 Note: Kent Beck
-eg. Test is slow to run; Non-deterministic; Hard to write.
 
 >
 
@@ -43,17 +30,11 @@ eg. Test is slow to run; Non-deterministic; Hard to write.
 Today's goal is to teach you the **skill** of TDD by
 explanation, demonstration, and **participation**.
 
-Note: Doing TDD requires a broad range of skills which we'll go through today
-and you'll all be putting it into practice for yourselves.
-
 V
 
 # Be skeptical
 
 ### The best way to justify TDD is by doing it.
-
-Note: It will sound and feel strange at first, because part of you will want
-to "just get on and code". But bear with it, and you might just enjoy it :)
 
 >
 
@@ -183,11 +164,9 @@ V
 
     $ python -c "import nose; nose.run()"
 
-    $ nosetests.exe
-
     But best handled through your IDE.
 
-Note: Demo with commandline and PyCharm
+Note: Demo with commandline, PyCharm, and Sublime with Kristinn's plugin.
 
 >
 
@@ -367,7 +346,7 @@ Know when you're done.
 
 Take the Tic-Tac-Toe game provided and write a "perfect" AI using TDD.
 
-See `ai_requirements.rst` for your AI's logic.
+See `tictactoe/ai_requirements.rst` for your AI's logic.
 
 You can use any AI strategy you want but it must be developed with TDD.
 
@@ -521,9 +500,9 @@ on the service can be tested.
     class RemoteAPI(object):
         URL = 'http://someservice/'
         def create_job(self, name):
-            self.PUT('/job/' + name)
+            self.PUT('/createjob/' + name)
         def get_job(name):
-            self.GET('/job/' + name
+            self.GET('/getjob/' + name
 
 vs.
 
@@ -560,14 +539,13 @@ V
     import mock
 
     def testIsCorpIfIsPlayerCorp():
-        standsvc = mock.Mock()
-        standsvc.IsKnownToBeAPlayerCorp.return_value = True
+        getIsPlayerCorp = mock.Mock(return_value=True)
         ownerid = 47585434
-        isalliance = IsCorporation(ownerid, standsvc)
+        isalliance = IsCorporation(ownerid, getIsPlayerCorp)
         assert not isalliance
-        standsvc.IsKnownToBeAPlayerCorp.assert_called_once_with(ownerid)
+        getIsPlayerCorp.assert_called_once_with(ownerid)
 
-*or write more testable code.
+*or write better code.
 
 V
 
@@ -632,22 +610,4 @@ Or a decorator:
 
 >
 
-# Demo time
-
-![Magic 8 Ball](/images/magic8ball.png)
-
-V
-
-![mob programming](/images/mobprogramming.png)
-
->
-
-# Your Turn!
-
-Build a recorder for a Chess simulator.
-
-See `chess_recorder_requirements.rst`
-
-V
-
-![mocking chess](/images/mocking_chess.png)
+# Mocking Exercises
