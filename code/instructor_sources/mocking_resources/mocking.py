@@ -1,6 +1,7 @@
 import json
 import sys
 
+
 def print_string(s):
     """Prints a string to sys.stdout.
     If the string prints, return True.
@@ -11,7 +12,7 @@ def print_string(s):
     Return True if all strings were printed, False if any failed.
     """
 
-    if sys.stdout.isatty():
+    if not sys.stdout.isatty():
         return False
     if isinstance(s, basestring):
         try:

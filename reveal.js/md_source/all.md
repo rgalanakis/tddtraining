@@ -608,6 +608,23 @@ Or a decorator:
     def testWritesToStdOut():
         foo.bar()
 
+V
+
+## Specs
+
+**Specs** are used to make "strict" mocks and can be used to make tests more
+reliable and less prone to oversights.
+
+    nospec = mock.Mock()
+    nospec.wriite('hi')
+
+    spec = mock.create_autospec(sys.stdout)
+    self.assertRaises(AttributeError, getattr, spec, 'wriite')
+    # or: spec = mock.Mock(spec=sys.stdout)
+    # or: mock.patch('sys.stdout', spec=sys.stdout)
+
 >
 
 # Mocking Exercises
+
+We're going to write tests for some code that uses external resources.
