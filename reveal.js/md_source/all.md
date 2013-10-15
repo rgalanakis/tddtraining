@@ -24,16 +24,16 @@ have them drive the design of the code?
 
 V
 
-## Regression tests are a **side product**.
-## not the goal.
-
-V
-
 > TDD doesn't drive good design.
 > TDD gives you immediate feedback about what is likely to be bad design.
 
 Note: Kent Beck
 eg. Test is slow to run; Non-deterministic; Hard to write.
+
+V
+
+## Regression tests are a **side product**.
+## not the goal.
 
 >
 
@@ -181,10 +181,12 @@ V
         unittest.main()
 
     $ python -c "import nose; nose.run()"
+    
+    $ nosetests.exe
 
     But best handled through your IDE.
 
-Note: Demo with commandline, PyCharm, and Sublime with Kristinn's plugin.
+Note: Demo with commandline or PyCharm
 
 >
 
